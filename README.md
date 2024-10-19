@@ -1,8 +1,10 @@
 # Image Generation Studio
 
-This is an examplary implementation of a Web Aapplication to generate images from the back of an AI model.
+This is an exemplary implementation of a web application to generate images using an AI model.
 
-This implementation uses Flux.1 for generating images and Streamlit as a UI Web Framework.
+This implementation uses Flux.1 for generating images and Streamlit as the UI web framework.
+
+![App Screenshot](./screenshot.png)
 
 ## Getting Started
 
@@ -42,6 +44,8 @@ To run the Streamlit app locally:
 streamlit run app.py
 ```
 
+Note: The app will check for the presence of an API key in the .env file. If not found, it will prompt the user to input the API key within the UI.
+
 ## Generate images with Flux.1 [dev]
 
 This Python implementation demonstrates how to call the Flux.1 API to generate images.
@@ -72,7 +76,7 @@ print(data.decode("utf-8"))
 
 An endpoint for retrieving the result of a generation task.
 
-#### Query Parameters:
+#### Query Parameters
 
 - **id**: __(string, required)__ Task ID used for retrieving the result.
 
@@ -102,6 +106,10 @@ An endpoint for retrieving the result of a generation task.
 - **seed**: __(integer)__ Optional seed for reproducibility.
 - **guidance**: __(float, min: 1.5, max: 5)__ Guidance scale for image generation. Higher values improve prompt adherence but may reduce realism.
 - **safety_tolerance**: __(integer, min: 0, max: 6)__ Moderation tolerance level, with 0 being most strict and 6 being least strict.
+
+### Task Status and Error Handling
+
+The app supports polling for task status until completion. If an error occurs during image generation, detailed error messages from the API will be shown in the UI, allowing easier debugging and feedback. The task ID is saved in the session state and used to fetch the result.
 
 ## License
 
