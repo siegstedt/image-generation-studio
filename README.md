@@ -70,6 +70,21 @@ data = res.read()
 print(data.decode("utf-8"))
 ```
 
+Once generated, an image can be gotten from the "get result" endpoint. Here is an examplary Python implementation.
+
+```python
+import http.client
+
+conn = http.client.HTTPSConnection("api.bfl.ml")
+
+conn.request("GET", "/v1/get_result?id=")
+
+res = conn.getresponse()
+data = res.read()
+
+print(data.decode("utf-8"))
+```
+
 ## API Options
 
 ### Get the Result from Image Generation
